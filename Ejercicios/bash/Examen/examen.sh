@@ -31,7 +31,11 @@ procesarDirectorio() {
 			# Comprobar que son ficheros
 			if [ -f $1/$fichero ]; then
 				# Convertir a minúsculas
-                        	echo "--- $fichero ha sido renombrado como $fichero"
+				ficheroMin=$(echo $fichero | tr 'A-Z' 'a-z')
+				# Movemos realmente el fichero
+				mv $1/$fichero $1/$ficheroMin
+				# Mostramos mensaje
+                        	echo "--- $fichero ha sido renombrado como $ficheroMin"
 			fi
 		done
 	fi
