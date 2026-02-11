@@ -38,10 +38,18 @@ procesarDirectorio() {
                         	echo "--- $fichero ha sido renombrado como $ficheroMin"
 			fi
 		done
+		return 1
+	else
+		return 0
 	fi
 }
 
 # Procesar directorios (uso de funciones)
+directoriosProcesados=0
 for directorio in $*; do
 	procesarDirectorio $directorio
+	if [ $? -eq 1 ]; then
+		directoriosProcesados=$(($directoriosProcesados+1))
+	fi
 done
+echo "Número de directorios procesados: $directoriosProcesados"
