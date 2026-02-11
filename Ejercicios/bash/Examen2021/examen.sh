@@ -11,13 +11,15 @@ function mostrarMenu() {
 # Procesamos acción generarLogin
 function generarLogin() {
 	fichero=$(cat fichero.txt)
+	fichLogin="loginServ.txt"
+	touch $fichLogin
 	for fila in $fichero; do
 		apellido1=$(echo $fila | cut -d: -f1 | cut -c1-3)
 		apellido2=$(echo $fila | cut -d: -f2 | cut -c1-3)
 		nombre=$(echo $fila | cut -d: -f3 | cut -c1)
 		numDNI=$(echo $fila | cut -d: -f4 | cut -c6-8)
 	        login=$(echo "$nombre$apellido1$apellido2$numDNI" | tr 'A-Z' 'a-z')
-		echo $login >> salida.txt
+		echo $login >> $fichLogin
 	done
 }
 
